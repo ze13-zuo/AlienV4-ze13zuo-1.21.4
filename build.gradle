@@ -1,0 +1,109 @@
+plugins {
+    id 'fabric-loom' version '1.18.2'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+loom {
+    accessWidenerPath = file("src/main/resources/alien.accesswidener")
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    modImplementation name: 'baritone-api-fabric-1.13.1'
+    modImplementation name: 'nether-pathfinder-1.4.1'
+    modImplementation name: 'IAS-9.0.8+1.21.4-fabric'
+    modImplementation name: 'satin-3.0.0-alpha.1'
+    modImplementation name: 'sodium-fabric-0.6.13+mc1.21.4'
+    implementation 'org.apiguardian:apiguardian-api:1.1.2'
+    include name: 'satin-3.0.0-alpha.1'
+    include name: 'IAS-9.0.8+1.21.4-fabric'
+    include name: 'baritone-api-fabric-1.13.1'
+    include name: 'sodium-fabric-0.6.13+mc1.21.4'
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        // 阿里云镜像
+        maven {
+            url "https://maven.aliyun.com/repository/public/"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/gradle-plugin/"
+        }
+
+        // 腾讯云镜像
+        maven {
+            url "https://mirrors.cloud.tencent.com/nexus/repository/maven-public/"
+        }
+        maven {
+            url "https://mirrors.cloud.tencent.com/nexus/repository/maven-google/"
+        }
+
+        // 华为云镜像
+        maven {
+            url "https://mirrors.huaweicloud.com/repository/maven/"
+        }
+
+        // 中央仓库
+        mavenCentral()
+
+        // Fabric 仓库
+        maven {
+            url "https://maven.fabricmc.net/"
+        }
+
+        // Modrinth Maven 仓库
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = "Modrinth"
+                    url = "https://api.modrinth.com/maven"
+                }
+            }
+            filter {
+                includeGroup "maven.modrinth"
+            }
+        }
+
+    }
+}
