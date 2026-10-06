@@ -177,7 +177,9 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
       )
    )
    private void onTickHasVehicleBeforeSendPackets(CallbackInfo info) {
-      this.rotation();
+      if (this.hasVehicle()) {
+         this.rotation();
+      }
    }
 
    @Unique
@@ -212,7 +214,7 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
       )
    )
    private void onTickHasVehicleAfterSendPackets(CallbackInfo info) {
-      if (this.rotation) {
+      if (this.hasVehicle() && this.rotation) {
          this.setYaw(this.preYaw);
          this.setPitch(this.prePitch);
          this.rotation = false;

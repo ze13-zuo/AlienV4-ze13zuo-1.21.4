@@ -79,7 +79,7 @@ implements Wrapper {
             ManagedShaderEffect shader = this.getShader(mode);
             PostEffectProcessor effect = shader.getShaderEffect();
             if (effect != null) {
-                ((IShaderEffectHook)effect).alienClient$addHook("bufIn", this.shaderBuffer);
+                ((IShaderEffectHook)effect).alienClient$addHook("bufin", this.shaderBuffer);
             }
             this.setupShader(mode, shader);
             this.shaderBuffer.clear();
@@ -202,60 +202,60 @@ implements Wrapper {
     }
 
     public void reloadShaders() {
-        DEFAULT = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/outline.json"));
-        SMOKE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/smoke.json"));
-        GRADIENT = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/gradient.json"));
-        SNOW = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/snow.json"));
-        FLOW = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/flow.json"));
-        RAINBOW = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/rainbow.json"));
-        PULSE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/pulse.json"));
-        DEFAULT_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/outline.json"), managedShaderEffect -> {
+        DEFAULT = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/outline.json"));
+        SMOKE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/smoke.json"));
+        GRADIENT = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/gradient.json"));
+        SNOW = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/snow.json"));
+        FLOW = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/flow.json"));
+        RAINBOW = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/rainbow.json"));
+        PULSE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/pulse.json"));
+        DEFAULT_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/outline.json"), managedShaderEffect -> {
             PostEffectProcessor effect = managedShaderEffect.getShaderEffect();
             if (effect != null) {
-                ((IShaderEffectHook)effect).alienClient$addHook("bufIn", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
-                ((IShaderEffectHook)effect).alienClient$addHook("bufOut", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufin", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufout", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
             }
         });
-        PULSE_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/pulse.json"), managedShaderEffect -> {
+        PULSE_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/pulse.json"), managedShaderEffect -> {
             PostEffectProcessor effect = managedShaderEffect.getShaderEffect();
             if (effect != null) {
-                ((IShaderEffectHook)effect).alienClient$addHook("bufIn", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
-                ((IShaderEffectHook)effect).alienClient$addHook("bufOut", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufin", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufout", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
             }
         });
-        SMOKE_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/smoke.json"), managedShaderEffect -> {
+        SMOKE_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/smoke.json"), managedShaderEffect -> {
             PostEffectProcessor effect = managedShaderEffect.getShaderEffect();
             if (effect != null) {
-                ((IShaderEffectHook)effect).alienClient$addHook("bufIn", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
-                ((IShaderEffectHook)effect).alienClient$addHook("bufOut", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufin", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufout", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
             }
         });
-        GRADIENT_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/gradient.json"), managedShaderEffect -> {
+        GRADIENT_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/gradient.json"), managedShaderEffect -> {
             PostEffectProcessor effect = managedShaderEffect.getShaderEffect();
             if (effect != null) {
-                ((IShaderEffectHook)effect).alienClient$addHook("bufIn", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
-                ((IShaderEffectHook)effect).alienClient$addHook("bufOut", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufin", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufout", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
             }
         });
-        SNOW_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/snow.json"), managedShaderEffect -> {
+        SNOW_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/snow.json"), managedShaderEffect -> {
             PostEffectProcessor effect = managedShaderEffect.getShaderEffect();
             if (effect != null) {
-                ((IShaderEffectHook)effect).alienClient$addHook("bufIn", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
-                ((IShaderEffectHook)effect).alienClient$addHook("bufOut", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufin", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufout", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
             }
         });
-        FLOW_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/flow.json"), managedShaderEffect -> {
+        FLOW_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/flow.json"), managedShaderEffect -> {
             PostEffectProcessor effect = managedShaderEffect.getShaderEffect();
             if (effect != null) {
-                ((IShaderEffectHook)effect).alienClient$addHook("bufIn", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
-                ((IShaderEffectHook)effect).alienClient$addHook("bufOut", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufin", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufout", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
             }
         });
-        RAINBOW_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"shaders/post/rainbow.json"), managedShaderEffect -> {
+        RAINBOW_OUTLINE = ShaderEffectManager.getInstance().manage(Identifier.of((String)"post_effect/rainbow.json"), managedShaderEffect -> {
             PostEffectProcessor effect = managedShaderEffect.getShaderEffect();
             if (effect != null) {
-                ((IShaderEffectHook)effect).alienClient$addHook("bufIn", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
-                ((IShaderEffectHook)effect).alienClient$addHook("bufOut", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufin", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
+                ((IShaderEffectHook)effect).alienClient$addHook("bufout", ShaderManager.mc.worldRenderer.getEntityOutlinesFramebuffer());
             }
         });
     }
